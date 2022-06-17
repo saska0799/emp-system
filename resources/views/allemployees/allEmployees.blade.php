@@ -8,7 +8,9 @@
             <th>Department</th>
             <th>Full Name</th>
             <th>Contact</th>
+            @auth
             <th>Action</th>
+            @endauth
         </tr>
     </thead>
     <tbody>
@@ -24,6 +26,7 @@
             <td>
                 {{$employee->email}}
             </td>
+            @auth
             <td class="container d-flex flex-row">
                 {{Form::open(['action'=>['App\Http\Controllers\EmployeesController@destroy', $employee->id], 'method'=>'POST'])}}
                 {{Form::hidden('_method', 'DELETE')}}
@@ -33,7 +36,7 @@
 
                 <a class='btn btn-primary ms-3' href='/employees/{{$employee->id}}/edit'><i class="fa-solid fa-pen-to-square"></i></a>
             </td>
-
+            @endauth
         </tr>
         @endforeach
     </tbody>
